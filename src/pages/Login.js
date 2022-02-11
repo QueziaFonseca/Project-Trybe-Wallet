@@ -30,7 +30,7 @@ class Login extends React.Component {
 
   handleClick = () => {
     const { getEmail } = this.props;
-    const { email, redirect } = this.state;
+    const { email } = this.state;
 
     this.setState({ redirect: true });
     console.log(this.state);
@@ -55,7 +55,7 @@ class Login extends React.Component {
 
   render() {
     const { redirect, email, password } = this.state;
-    console.log(this.state);
+
     if (redirect) return <Redirect to="/carteira" />;
     return (
       <section>
