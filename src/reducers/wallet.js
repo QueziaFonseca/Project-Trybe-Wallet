@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const wallet = (state = initialState, action) => {
-  switch (type) {
+  switch (action.type) {
   case GET_WALLET_DATA:
     return {
       ...state,
