@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Header from './Header';
 import { fetchCoinsAction } from '../actions/walletAction';
 
 class WalletForm extends React.Component {
@@ -27,7 +26,6 @@ class WalletForm extends React.Component {
 
       <section>
 
-        <Header />
         <form>
           <label htmlFor="value-input">
             Valor:
@@ -62,7 +60,7 @@ class WalletForm extends React.Component {
               // value={ currencyInput }
               // onChange={ this.handleClik}
             >
-              { Object.keys(coinsOptions)
+              { coinsOptions && Object.keys(coinsOptions)
                 .filter((coin) => coin !== 'USDT')
                 .map((coin) => (
                   <option
