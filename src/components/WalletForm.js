@@ -3,24 +3,78 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCoinsAction } from '../actions/walletAction';
 
+// 4) botão despesas
+// 1) salvar as informações da despesa no estado globa[WalletForm]
+// atualizar a soma das despesas no [header]
+
+// função handle click:
+/* DESPESA
+    - id da despesa --> index do map
+    - cotação do cambio (exchangeRates) --> API , chave "ask"?
+    -Apos adicionar despesa limpeo valor do campo valor da despesa
+
+  SOMA TOTAL DESPESA   !!! fazer no HEADER !!!!
+  - atualizar depois adicionar uma despesa
+  - usar chave ask pra fazer a soma
+  -
+
+*/
+
 class WalletForm extends React.Component {
   constructor() {
     super();
 
-    // this.getCoinsArray = this.getCoinsArray.bind(this);
-    this.state = {
+    this.onInputChange = this.onInputChange.bind(this);
+    this.updateLocalState = this.updateLocalState.bind(this);
 
+    this.state = {
+      id: 0, // index do map
+      value: '',
+      description: '',
+      currency: '',
+      method: '',
+      tag: '',
+      exchangeRates: [],
+      coins: [], // cotação do cambio
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { fetchCoinsApi } = this.props;
-    fetchCoinsApi();
+    await fetchCoinsApi();
+  }
+
+  // Referência: Mentoria de Revisão Redux, ministrada pelo Instrutor Ander Souza Santana
+  componentDidUpdate() {
+    this.updateLocalState();
+  }
+
+  // async handleClik() {
+  //   await fetchCoinsApi();
+  // }
+
+  onInputChange({ target }) { // 2.2)
+    const { name, value } = target;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  updateLocalState() {
+    const { coinsOptions } = this.props;
+    const coinsOptionsArray = Object.keys(coinsOptions);
+    const { coins } = this.state;
+    if (coinsOptionsArray && coins.length === 0) {
+      this.setState({
+        coins: coinsOptionsArray,
+      });
+    }
   }
 
   render() {
-    // console.log(this.props);
-    const { coinsOptions } = this.props;
+    const { value, currency, method, tag, description, coins } = this.state;
+    // console.log(this.state);
 
     return (
 
@@ -32,10 +86,10 @@ class WalletForm extends React.Component {
             <input
               data-testid="value-input"
               id="value-input"
-              type="text"
-              name="valueInput"
-              // value={ valueInput }
-              // onChange={ this.handleClik }
+              type="number"
+              name="value"
+              value={ value }
+              onChange={ this.onInputChange }
             />
           </label>
 
@@ -45,9 +99,9 @@ class WalletForm extends React.Component {
               data-testid="description-input"
               id="description-input"
               type="text"
-              name="descriptionInput"
-              // value={ descriptionInput }
-              // onChange={ this.handleClik }
+              name="description"
+              value={ description }
+              onChange={ this.onInputChange }
             />
           </label>
 
@@ -56,12 +110,11 @@ class WalletForm extends React.Component {
             <select
               data-testid="currency-input"
               id="currency-input"
-              name="currencyInput"
-              // value={ currencyInput }
-              // onChange={ this.handleClik}
+              name="currency"
+              value={ currency }
+              onChange={ this.onInputChange }
             >
-              { coinsOptions && Object.keys(coinsOptions)
-                .filter((coin) => coin !== 'USDT')
+              { coins.filter((coin) => coin !== 'USDT')
                 .map((coin) => (
                   <option
                     key={ coin }
@@ -77,9 +130,9 @@ class WalletForm extends React.Component {
             <select
               data-testid="method-input"
               id="method-input"
-              name="methodInput"
-              // value={ methodInput }
-              // onChange={ this.handleClik }
+              name="method"
+              value={ method }
+              onChange={ this.onInputChange }
             >
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
@@ -92,9 +145,9 @@ class WalletForm extends React.Component {
             <select
               data-testid="tag-input"
               id="tag-input"
-              name="tagInput"
-              // value={ tagInput }
-              // onChange={ this.handleClik }
+              name="tag"
+              value={ tag }
+              onChange={ this.onInputChange }
             >
               <option value="Alimentação">Alimentação</option>
               <option value="Lazer">Lazer</option>
@@ -107,7 +160,7 @@ class WalletForm extends React.Component {
           <button
             data-testid="lexpense-button"
             type="button"
-            // disabled={ userName.length < minImputLength } // 2.3)
+            // disabled={  }
             // onClick={ this.handleClik }
           >
             Adicionar despesa
@@ -117,8 +170,6 @@ class WalletForm extends React.Component {
       </section>);
   }
 }
-
-// adicionar moedas: requisição de API
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCoinsApi: () => dispatch(fetchCoinsAction()),
