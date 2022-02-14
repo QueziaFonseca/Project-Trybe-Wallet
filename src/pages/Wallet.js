@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
+import WalletTable from '../components/WalletTable';
 
 class Wallet extends React.Component {
   constructor() {
@@ -21,6 +22,7 @@ class Wallet extends React.Component {
 
         <Header />
         <WalletForm />
+        <WalletTable />
       </section>);
   }
 }
