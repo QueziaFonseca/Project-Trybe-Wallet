@@ -28,13 +28,13 @@ class WalletForm extends React.Component {
     this.updateLocalState = this.updateLocalState.bind(this);
 
     this.state = {
-      id: 0, // index do map
+      // id: 0, // index do map
       value: '',
       description: '',
       currency: '',
       method: '',
       tag: '',
-      exchangeRates: [],
+      // exchangeRates: [],
       coins: [], // cotação do cambio
     };
   }
