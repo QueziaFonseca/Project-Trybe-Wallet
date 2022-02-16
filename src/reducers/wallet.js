@@ -1,11 +1,11 @@
+import { GET_CURRENCY } from '../actions/ExpensesAction';
 import { FAILED_REQUEST, GET_COINS, REQUEST_COINS } from '../actions/walletAction';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
-  wallet: {
-    currencies: [],
-    expenses: [],
-  },
+
+  currencies: [],
+  expenses: [],
   loading: false,
   error: '',
   coins: {},
@@ -33,13 +33,21 @@ const wallet = (state = INITIAL_STATE, action) => {
       loading: false,
       error: 'DEU RUIM NA API',
     };
+  case GET_CURRENCY: // Ajuda do monitor Rod
+    return {
+      ...state,
+      expenses: [...state.expenses, {
+        ...action.payload,
+        id: state.expenses.length,
+      }],
+    };
 
   default:
     return state;
   }
 };
 
-export default wallet;
-
 // currencies: action.payload.currencies,
 // expenses: action.payload.expenses,
+
+export default wallet;

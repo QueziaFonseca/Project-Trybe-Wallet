@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCoinsAction } from '../actions/walletAction';
+import { fetchCurrencyAction } from '../actions/ExpensesAction';
 
 // 4) botão despesas
 // 1) salvar as informações da despesa no estado globa[WalletForm]
@@ -26,15 +27,15 @@ class WalletForm extends React.Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.updateLocalState = this.updateLocalState.bind(this);
+    this.handleClik = this.handleClik.bind(this);
 
     this.state = {
-      // id: 0, // index do map
       value: '',
       description: '',
-      currency: '',
-      method: '',
-      tag: '',
-      // exchangeRates: [],
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+      exchangeRates: [],
       coins: [], // cotação do cambio
     };
   }
@@ -49,16 +50,19 @@ class WalletForm extends React.Component {
     this.updateLocalState();
   }
 
-  // async handleClik() {
-  //   await fetchCoinsApi();
-  // }
-
   onInputChange({ target }) { // 2.2)
     const { name, value } = target;
 
     this.setState({
       [name]: value,
     });
+  }
+
+  handleClik() {
+    console.log('entroooou');
+    const { fetchCurrencyApi } = this.props;
+    const { currency, description, exchangeRates, method, tag, value } = this.state;
+    fetchCurrencyApi({ currency, description, exchangeRates, method, tag, value });
   }
 
   updateLocalState() {
@@ -160,8 +164,7 @@ class WalletForm extends React.Component {
           <button
             data-testid="lexpense-button"
             type="button"
-            // disabled={  }
-            // onClick={ this.handleClik }
+            onClick={ this.handleClik }
           >
             Adicionar despesa
           </button>
@@ -173,6 +176,7 @@ class WalletForm extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCoinsApi: () => dispatch(fetchCoinsAction()),
+  fetchCurrencyApi: (state) => dispatch(fetchCurrencyAction(state)),
 });
 
 const mapStateToProps = ({ wallet }) => ({
@@ -182,5 +186,6 @@ const mapStateToProps = ({ wallet }) => ({
 WalletForm.propTypes = {
   fetchCoinsApi: PropTypes.func.isRequired,
   coinsOptions: PropTypes.func.isRequired,
+  fetchCurrencyApi: PropTypes.func.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
