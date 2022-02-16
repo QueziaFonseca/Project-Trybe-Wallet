@@ -3,7 +3,7 @@ import { FAILED_REQUEST, GET_COINS, REQUEST_COINS } from '../actions/walletActio
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
-
+  total: 0,
   currencies: [],
   expenses: [],
   loading: false,
@@ -33,13 +33,15 @@ const wallet = (state = INITIAL_STATE, action) => {
       loading: false,
       error: 'DEU RUIM NA API',
     };
-  case GET_CURRENCY: // Ajuda do monitor Rod
+  case GET_CURRENCY: // Ajuda do monitor Rod (chave id) /Instrutor Giovanni (chave total)
     return {
       ...state,
       expenses: [...state.expenses, {
         ...action.payload,
         id: state.expenses.length,
       }],
+      total: state.total + action.payload.value * action
+        .payload.exchangeRates[action.payload.currency].ask,
     };
 
   default:

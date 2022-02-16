@@ -63,6 +63,9 @@ class WalletForm extends React.Component {
     const { fetchCurrencyApi } = this.props;
     const { currency, description, exchangeRates, method, tag, value } = this.state;
     fetchCurrencyApi({ currency, description, exchangeRates, method, tag, value });
+    this.setState({
+      value: '',
+    });
   }
 
   updateLocalState() {
