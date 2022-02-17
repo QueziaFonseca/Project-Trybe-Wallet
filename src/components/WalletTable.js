@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class WalletTable extends React.Component {
   constructor() {
@@ -9,6 +11,7 @@ class WalletTable extends React.Component {
   }
 
   render() {
+    const { expenses } = this.props;
     return (
 
       <section>
@@ -26,10 +29,38 @@ class WalletTable extends React.Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-          <tbody />
+          <tbody>
+            {expenses.map((expense) => (
+              <tr key={ expense.id }>
+                <td>{expense.description}</td>
+                <td>{expense.tag}</td>
+                <td>{expense.method}</td>
+                <td>{Number(expense.value).toFixed(2)}</td>
+                <td>{expense.exchangeRates[expense.currency].name.split('/')[0]}</td>
+                <td>{Number(expense.exchangeRates[expense.currency].ask).toFixed(2)}</td>
+                <td>
+                  {Number(expense.value * expense.exchangeRates[expense.currency]
+                    .ask).toFixed(2)}
+
+                </td>
+                <td>Real</td>
+                <td>Editar/Excluir</td>
+              </tr>
+
+            ))}
+
+          </tbody>
         </table>
       </section>);
   }
 }
 
-export default WalletTable;
+const mapStateToProps = (state) => ({
+  expenses: state.wallet.expenses,
+});
+
+WalletTable.propTypes = {
+  expenses: PropTypes.objectOf.isRequired,
+};
+
+export default connect(mapStateToProps)(WalletTable);
