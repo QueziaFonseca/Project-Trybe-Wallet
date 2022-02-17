@@ -6,33 +6,10 @@ class Header extends React.Component {
   constructor() {
     super();
 
-    // this.updateLocalState = this.updateLocalState.bind(this);
-
     this.state = {
 
     };
   }
-
-  // sumExpenses() {
-  // const { wallet.expenses } = this.props
-  // const value = wallet.expenses.value
-  // const ask = exchangeRates.filter((currency) => Object.keys(exchangeRates) === currency )
-  // value *  ask
-  // ask
-
-  // }
-  // componentDidUpdate() {
-  //   this.updateLocalState();
-  // }
-
-  // updateLocalState() {
-  //   const { totalExpenses } = this.props;
-  //   if (totalExpenses) {
-  //     this.setState({
-  //       total: totalExpenses,
-  //     });
-  //   }
-  // }
 
   render() {
     // console.log(this.props);
