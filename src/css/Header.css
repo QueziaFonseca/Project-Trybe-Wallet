@@ -1,0 +1,9 @@
+header {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-between;
+}
+
+form {
+  background-color: yellow;
+}
