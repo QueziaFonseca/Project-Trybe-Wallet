@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { connect } from 'react-redux';
 import { getEmailAction } from '../actions/userAction';
+import '../css/Login.css';
+import trybeWalletTitle from '../images/trybeWalletTitle.png';
 
 class Login extends React.Component {
   constructor() {
@@ -58,41 +60,50 @@ class Login extends React.Component {
 
     if (redirect) return <Redirect to="/carteira" />;
     return (
-      <section>
-        <form>
+      <section className="body">
+        <form className="container-login">
+          <img
+            src={ trybeWalletTitle }
+            alt="wallet"
+          />
+          <div className="container-email">
+            <label htmlFor="email-input">
+              <input
+                data-testid="email-input"
+                id="email"
+                type="email"
+                name="email"
+                value={ email }
+                onChange={ this.onInputChange }
+                placeholder="E-mail"
+              />
+            </label>
+          </div>
 
-          <label htmlFor="email-input">
-            E-mail
-            <input
-              data-testid="email-input"
-              id="email"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ this.onInputChange }
-            />
-          </label>
+          <div className="container-password">
+            <label htmlFor="password-input">
+              <input
+                data-testid="password-input"
+                id="password-input"
+                type="password"
+                name="password"
+                value={ password }
+                onChange={ this.onInputChange }
+                placeholder="Password"
+              />
+            </label>
+          </div>
 
-          <label htmlFor="password-input">
-            Password
-            <input
-              data-testid="password-input"
-              id="password-input"
-              type="password"
-              name="password"
-              value={ password }
-              onChange={ this.onInputChange }
-            />
-          </label>
-
-          <button
-            type="button"
-            name="isDisabled"
-            disabled={ this.validateLogin() }
-            onClick={ this.handleClick }
-          >
-            Entrar
-          </button>
+          <div className="container-btn">
+            <button
+              type="button"
+              name="isDisabled"
+              disabled={ this.validateLogin() }
+              onClick={ this.handleClick }
+            >
+              Entrar
+            </button>
+          </div>
 
         </form>
       </section>
