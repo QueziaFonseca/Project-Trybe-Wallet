@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import '../css/Header.css';
+import trybeWalletTitle from '../images/trybeWalletTitle.png';
 
 class Header extends React.Component {
   constructor() {
@@ -22,17 +23,22 @@ class Header extends React.Component {
 
         <header>
 
-          <h1>Trybe Wallet</h1>
+          <img
+            src={ trybeWalletTitle }
+            alt="wallet"
+          />
+          <div className="header-text">
 
-          <h4 data-testid="email-field">
-            {' '}
-            { email }
-          </h4>
-          <h4 data-testid="total-field">
-            { /* Ajuda do instrutor Samuel */}
-            { totalExpenses || 0 }
-          </h4>
-          <h4 data-testid="header-currency-field">BRL</h4>
+            <h4 data-testid="email-field">
+              {' '}
+              { email }
+            </h4>
+            <h4 data-testid="total-field">
+              { /* Ajuda do instrutor Samuel */}
+              { totalExpenses.toFixed(2) || 0 }
+            </h4>
+            <h4 data-testid="header-currency-field">BRL</h4>
+          </div>
 
         </header>
 
