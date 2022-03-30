@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import '../css/WalletTable.css';
 
 class WalletTable extends React.Component {
   constructor() {
@@ -14,7 +15,7 @@ class WalletTable extends React.Component {
     const { expenses } = this.props;
     return (
 
-      <section>
+      <section className="table-head">
         <table>
           <thead>
             <tr>
@@ -29,7 +30,7 @@ class WalletTable extends React.Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-rows">
             {expenses.map((expense) => (
               <tr key={ expense.id }>
                 <td>{expense.description}</td>
