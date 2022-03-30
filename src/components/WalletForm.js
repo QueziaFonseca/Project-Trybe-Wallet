@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCoinsAction } from '../actions/walletAction';
 import { fetchCurrencyAction } from '../actions/ExpensesAction';
-
+import '../css/WalletForm.css';
 // 4) botão despesas
 // 1) salvar as informações da despesa no estado globa[WalletForm]
 // atualizar a soma das despesas no [header]
@@ -91,6 +91,7 @@ class WalletForm extends React.Component {
           <label htmlFor="value-input">
             Valor:
             <input
+              className="input"
               data-testid="value-input"
               id="value-input"
               type="number"
@@ -103,6 +104,7 @@ class WalletForm extends React.Component {
           <label htmlFor="description-input">
             Descrição da despesa
             <input
+              className="input"
               data-testid="description-input"
               id="description-input"
               type="text"
@@ -115,6 +117,7 @@ class WalletForm extends React.Component {
           <label htmlFor="currency-input">
             moeda
             <select
+              className="input"
               data-testid="currency-input"
               id="currency-input"
               name="currency"
@@ -135,6 +138,7 @@ class WalletForm extends React.Component {
           <label htmlFor="method-input">
             Método de Pagamento
             <select
+              className="input"
               data-testid="method-input"
               id="method-input"
               name="method"
@@ -150,6 +154,7 @@ class WalletForm extends React.Component {
           <label htmlFor="tag-input">
             Categoria
             <select
+              className="input"
               data-testid="tag-input"
               id="tag-input"
               name="tag"

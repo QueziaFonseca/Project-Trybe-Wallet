@@ -1,0 +1,22 @@
+form {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+form label {
+  align-items: center;
+  display: flex;
+  margin: 10px;
+  padding: 5px;
+}
+
+.input {
+  margin: 1px 0 1px 8px;
+  padding: 5px;
+}
+
