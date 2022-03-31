@@ -27,17 +27,17 @@ class Header extends React.Component {
             src={ trybeWalletTitle }
             alt="wallet"
           />
+          <h4 data-testid="email-field">
+            {' '}
+            { `E-mail: ${email}` }
+          </h4>
           <div className="header-text">
 
-            <h4 data-testid="email-field">
-              {' '}
-              { email }
-            </h4>
             <h4 data-testid="total-field">
               { /* Ajuda do instrutor Samuel */}
-              { totalExpenses.toFixed(2) || 0 }
+              { `Despesa total: R$ ${totalExpenses.toFixed(2)}` || 0 }
             </h4>
-            <h4 data-testid="header-currency-field">BRL</h4>
+            <h4 data-testid="header-currency-field" className="currency">BRL</h4>
           </div>
 
         </header>

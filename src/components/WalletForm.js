@@ -170,6 +170,7 @@ class WalletForm extends React.Component {
           </label>
 
           <button
+            className=" form-button"
             data-testid="lexpense-button"
             type="button"
             onClick={ this.handleClik }

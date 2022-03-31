@@ -8,8 +8,12 @@ header {
 .header-text {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 800px;
+  justify-content: center;
+  width: auto;
+}
+
+.currency {
+  margin-left: 2px;
 }
 
 /* form {

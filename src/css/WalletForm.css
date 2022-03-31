@@ -20,3 +20,7 @@ form label {
   padding: 5px;
 }
 
+form button {
+  font-weight: bolder;
+  padding: 5px;
+}
