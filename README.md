@@ -7,11 +7,15 @@ A aplicação é uma carteira digital de controle de gastos com um conversor de 
 # Habilidades
 
 O projeto Trybe Wallet foi feito utilizando:
+* Consumo de API
 * HTML
 * Css
 * JavaScript 
 * React
-* Redux 
+* Ciclos de vida em React
+* BrowserRouter, React Router, Route, Switch
+* Redirect
+* Redux para gerenciar estado global
 
 Dentro do contexto de Redux este projeto visa consolidar os conhecimentos em:
   * Criar um store Redux em aplicações React
